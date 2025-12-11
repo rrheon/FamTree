@@ -7,13 +7,13 @@
 
 import Foundation
 
-struct FamilyGroup {
+struct Family: Equatable, Sendable {
     let id: UUID
     let name: String
     let members: [User]
     let createdBy: UUID // User ID
     let createdAt: Date
     let inviteCode: String
-    let treeProgress: TreeProgress
+    let familyTree: FamilyTree
 }
 

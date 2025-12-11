@@ -7,15 +7,14 @@
 
 import Foundation
 
-struct Question {
+struct Question: Equatable, Sendable {
     let id: UUID
     let content: String
     let category: QuestionCategory
     let order: Int
-    let createdAt: Date
 }
 
-enum QuestionCategory: String {
+enum QuestionCategory: String, Sendable {
     case daily = "일상 & 취미"
     case memory = "추억 & 과거"
     case values = "가치관 & 생각"

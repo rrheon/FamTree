@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct User {
+struct User: Identifiable, Equatable, Sendable {
     let id: UUID
     let email: String
     let name: String
@@ -16,7 +16,7 @@ struct User {
     let createdAt: Date
 }
 
-enum FamilyRole: String {
+enum FamilyRole: String, Sendable, Equatable {
     case father = "아빠"
     case mother = "엄마"
     case son = "아들"
