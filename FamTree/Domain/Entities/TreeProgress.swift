@@ -7,18 +7,32 @@
 
 import Foundation
 
-
-/// 그룹에 따른 나무 성장
-struct TreeProgress {
+struct FamilyTree: Equatable, Sendable {
     let id: UUID
     let familyId: UUID
     let stage: TreeStage
     let totalAnswers: Int
     let consecutiveDays: Int
     let lastUpdated: Date
+  
+  init(
+    id: UUID = UUID(),
+    familyId: UUID = UUID(),
+    stage: TreeStage = .seed,
+    totalAnswers: Int = 0,
+    consecutiveDays: Int = 0,
+    lastUpdated: Date = .now
+  ) {
+    self.id = id
+    self.familyId = familyId
+    self.stage = stage
+    self.totalAnswers = totalAnswers
+    self.consecutiveDays = consecutiveDays
+    self.lastUpdated = lastUpdated
+  }
 }
 
-enum TreeStage: Int {
+enum TreeStage: Int, Sendable {
     case seed = 0        // 씨앗 (0일)
     case sprout = 1      // 새싹 (1-10일)
     case sapling = 2     // 어린 나무 (11-30일)
