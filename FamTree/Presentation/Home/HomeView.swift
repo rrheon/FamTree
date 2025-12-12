@@ -8,48 +8,8 @@
 import SwiftUI
 import ComposableArchitecture
 
+// MARK: - HomeView
 struct HomeView: View {
-    @Bindable var store: StoreOf<HomeFeature>
-
-    var body: some View {
-        TabView(selection: $store.selectedTab.sending(\.selectTab)) {
-            HomeTabView(store: store)
-                .tabItem {
-                    Image(systemName: "house.fill")
-                    Text("홈")
-                }
-                .tag(HomeFeature.State.Tab.home)
-
-            TreeTabView(store: store)
-                .tabItem {
-                    Image(systemName: "leaf.fill")
-                    Text("나무")
-                }
-                .tag(HomeFeature.State.Tab.tree)
-
-            FamilyTabView(store: store)
-                .tabItem {
-                    Image(systemName: "person.3.fill")
-                    Text("가족")
-                }
-                .tag(HomeFeature.State.Tab.family)
-
-            SettingsTabView(store: store)
-                .tabItem {
-                    Image(systemName: "gearshape.fill")
-                    Text("설정")
-                }
-                .tag(HomeFeature.State.Tab.settings)
-        }
-        .tint(FTColor.primary)
-        .onAppear {
-            store.send(.onAppear)
-        }
-    }
-}
-
-// MARK: - Home Tab
-struct HomeTabView: View {
     let store: StoreOf<HomeFeature>
 
     var body: some View {
@@ -267,98 +227,36 @@ struct FamilyActivityCard: View {
     }
 }
 
-// MARK: - Placeholder Tabs
-struct TreeTabView: View {
-    let store: StoreOf<HomeFeature>
 
-    var body: some View {
-        NavigationStack {
-            VStack {
-                Spacer()
-                FTLogo(size: .large)
-                Text("나무 성장 화면")
-                    .font(FTFont.heading2())
-                    .foregroundColor(FTColor.textSecondary)
-                    .padding(.top, FTSpacing.lg)
-                Spacer()
-            }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .background(FTColor.surface)
-            .navigationTitle("나무")
-        }
-    }
-}
-
-struct FamilyTabView: View {
-    let store: StoreOf<HomeFeature>
-
-    var body: some View {
-        NavigationStack {
-            VStack {
-                Spacer()
-                Image(systemName: "person.3.fill")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 80, height: 80)
-                    .foregroundColor(FTColor.primary)
-                Text("가족 화면")
-                    .font(FTFont.heading2())
-                    .foregroundColor(FTColor.textSecondary)
-                    .padding(.top, FTSpacing.lg)
-                Spacer()
-            }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .background(FTColor.surface)
-            .navigationTitle("가족")
-        }
-    }
-}
-
-struct SettingsTabView: View {
-    let store: StoreOf<HomeFeature>
-
-    var body: some View {
-        NavigationStack {
-            List {
-                Section("계정") {
-                    HStack {
-                        Text("이름")
-                        Spacer()
-                        Text(store.currentUser?.name ?? "-")
-                            .foregroundColor(FTColor.textSecondary)
-                    }
-                    HStack {
-                        Text("이메일")
-                        Spacer()
-                        Text(store.currentUser?.email ?? "-")
-                            .foregroundColor(FTColor.textSecondary)
-                    }
-                }
-
-                Section("앱 정보") {
-                    HStack {
-                        Text("버전")
-                        Spacer()
-                        Text("1.0.0")
-                            .foregroundColor(FTColor.textSecondary)
-                    }
-                }
-
-                Section {
-                    Button("로그아웃") {
-                        store.send(.logout)
-                    }
-                    .foregroundColor(FTColor.error)
-                }
-            }
-            .navigationTitle("설정")
-        }
-    }
-}
-
-#Preview {
+#Preview("Home Tab") {
     HomeView(
-        store: Store(initialState: HomeFeature.State()) {
+        store: Store(initialState: HomeFeature.State(
+            todayQuestion: Question(
+                id: UUID(),
+                content: "오늘 가장 감사했던 순간은 언제인가요?",
+                category: .gratitude,
+                order: 1
+            ),
+            familyTree: FamilyTree(
+                stage: .youngTree,
+                totalAnswers: 12,
+                consecutiveDays: 5
+            ),
+            family: Family(
+                id: UUID(),
+                name: "우리 가족",
+                members: [
+                    User(id: UUID(), email: "dad@example.com", name: "아빠", profileImageURL: nil, role: .father, createdAt: .now),
+                    User(id: UUID(), email: "mom@example.com", name: "엄마", profileImageURL: nil, role: .mother, createdAt: .now),
+                    User(id: UUID(), email: "me@example.com", name: "나", profileImageURL: nil, role: .son, createdAt: .now)
+                ],
+                createdBy: UUID(),
+                createdAt: .now,
+                inviteCode: "ABCD1234",
+                familyTree: FamilyTree()
+            ),
+            currentUser: User(id: UUID(), email: "me@example.com", name: "나", profileImageURL: nil, role: .son, createdAt: .now)
+        )) {
             HomeFeature()
         }
     )

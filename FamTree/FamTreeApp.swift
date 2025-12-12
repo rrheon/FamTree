@@ -10,12 +10,13 @@ import ComposableArchitecture
 
 @main
 struct FamTreeApp: App {
-  let store = Store(initialState: HomeFeature.State()) {
-    HomeFeature()
+  let store = Store(initialState: RootFeature.State()) {
+    RootFeature()
   }
+  
     var body: some Scene {
         WindowGroup {
-            ContentView()
+          RootView(store: store)
         }
     }
 }
