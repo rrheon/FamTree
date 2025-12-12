@@ -6,9 +6,13 @@
 //
 
 import SwiftUI
+import ComposableArchitecture
 
 @main
 struct FamTreeApp: App {
+  let store = Store(initialState: HomeFeature.State()) {
+    HomeFeature()
+  }
     var body: some Scene {
         WindowGroup {
             ContentView()
