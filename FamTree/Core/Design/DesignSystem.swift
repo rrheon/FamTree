@@ -8,24 +8,39 @@
 import SwiftUI
 
 // MARK: - Colors
-enum FTColor {
-    static let primary = Color(hex: "7CB342")
-    static let primaryDark = Color(hex: "558B2F")
-    static let primaryLight = Color(hex: "AED581")
 
+// MARK: - Colors
+enum FTColor {
+    // Primary Colors
+    static let primary = Color(light: "4CAF50", dark: "66D267")
+    static let primaryLight = Color(light: "81C784", dark: "81C784")
+    static let primaryDark = Color(light: "388E3C", dark: "4CAF50")
+    
+    // Social Login Colors
     static let kakao = Color(hex: "FEE500")
     static let kakaoText = Color(hex: "000000")
     static let naver = Color(hex: "03C75A")
     static let naverText = Color(hex: "FFFFFF")
+    
+    // Background Colors
+    static let background = Color(light: "FFFFFF", dark: "121212")
+    static let surface = Color(light: "F7F8FA", dark: "1E1E1E")
+    
+    // Border & Divider
+    static let border = Color(light: "E0E0E0", dark: "2E2E2E")
+    static let divider = Color(light: "E0E0E0", dark: "2E2E2E")
+    
+    // Text Colors
+    static let textPrimary = Color(light: "212121", dark: "FFFFFF")
+    static let textSecondary = Color(light: "616161", dark: "BDBDBD")
+    static let textHint = Color(light: "9E9E9E", dark: "757575")
+    
+    // Status Colors
+    static let error = Color(light: "F44336", dark: "EF5350")
+    static let warning = Color(light: "FFC107", dark: "FFCA28")
+    static let success = Color(light: "4CAF50", dark: "66BB6A")
+    static let info = Color(light: "2196F3", dark: "42A5F5")
 
-    static let background = Color(hex: "FFFFFF")
-    static let surface = Color(hex: "F5F5F5")
-    static let textPrimary = Color(hex: "212121")
-    static let textSecondary = Color(hex: "757575")
-    static let textHint = Color(hex: "9E9E9E")
-    static let divider = Color(hex: "E0E0E0")
-    static let error = Color(hex: "F44336")
-    static let success = Color(hex: "4CAF50")
 }
 
 // MARK: - Typography
@@ -103,4 +118,14 @@ extension Color {
             opacity: Double(a) / 255
         )
     }
+    
+  
+  /// Light Mode와 Dark Mode를 모두 지원하는 Color 초기화
+  init(light: String, dark: String) {
+      self.init(UIColor { traitCollection in
+          traitCollection.userInterfaceStyle == .dark
+              ? UIColor(Color(hex: dark))
+              : UIColor(Color(hex: light))
+      })
+  }
 }
