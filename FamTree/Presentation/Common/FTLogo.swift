@@ -8,45 +8,53 @@
 import SwiftUI
 
 struct FTLogo: View {
-    enum Size {
-        case small
-        case medium
-        case large
-
-        var dimension: CGFloat {
-            switch self {
-            case .small: return 48
-            case .medium: return 80
-            case .large: return 120
-            }
-        }
+  enum FTLogoType: String {
+    case FamTreeIcon
+    case FamTreeImg
+  }
+  
+  enum Size {
+    case small
+    case medium
+    case large
+    
+    var dimension: CGFloat {
+      switch self {
+      case .small: return 48
+      case .medium: return 80
+      case .large: return 160
+      }
     }
-
-    let size: Size
-
-    init(size: Size = .medium) {
-        self.size = size
-    }
-
-    var body: some View {
-        ZStack {
-            Circle()
-                .fill(FTColor.primaryLight.opacity(0.3))
-                .frame(width: size.dimension, height: size.dimension)
-
-            Image(systemName: "leaf.fill")
-                .resizable()
-                .scaledToFit()
-                .frame(width: size.dimension * 0.5, height: size.dimension * 0.5)
-                .foregroundColor(FTColor.primary)
-        }
-    }
+  }
+  
+  let size: Size
+  let logo: FTLogoType
+  
+  init(size: Size = .medium, type: FTLogoType = .FamTreeIcon) {
+    self.size = size
+    self.logo = type
+  }
+  
+  var body: some View {
+    Image(logo.rawValue)
+      .resizable()
+      .scaledToFill()
+      .frame(width: size.dimension, height: size.dimension)
+      .foregroundColor(FTColor.primary)
+  }
 }
 
 #Preview {
-    VStack(spacing: 20) {
-        FTLogo(size: .small)
-        FTLogo(size: .medium)
-        FTLogo(size: .large)
-    }
+  VStack(spacing: 20) {
+    FTLogo(size: .small)
+    FTLogo(size: .medium)
+    FTLogo(size: .large)
+  }
+  
+  VStack(spacing: 20) {
+    FTLogo(size: .small, type: .FamTreeImg)
+    FTLogo(size: .medium, type: .FamTreeImg)
+    FTLogo(size: .large, type: .FamTreeImg)
+      .foregroundStyle(Color.blue)
+  }
 }

@@ -66,12 +66,17 @@ struct TodayQuestionCard: View {
     let action: () -> Void
 
     var body: some View {
+      
         Button(action: action) {
             VStack(alignment: .leading, spacing: FTSpacing.md) {
                 HStack {
-                  Text("\(question.category) 오늘의 질문")
-                        .font(FTFont.body2())
-                        .foregroundColor(FTColor.primary)
+                  VStack {
+                    Text("\(question.category.rawValue)")
+                      .foregroundColor(FTColor.primary)
+                  }
+                  .font(FTFont.body2())
+                  
+                  
                     Spacer()
                     Image(systemName: "chevron.right")
                         .foregroundColor(FTColor.textHint)
@@ -110,21 +115,11 @@ struct TreeProgressCard: View {
             }
 
             HStack(spacing: FTSpacing.lg) {
-                // Tree Icon
-                ZStack {
-                    Circle()
-                        .fill(FTColor.primaryLight.opacity(0.3))
-                        .frame(width: 80, height: 80)
-
-                    Image(systemName: treeIcon)
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 40, height: 40)
-                        .foregroundColor(FTColor.primary)
-                }
+                // Animated Tree Icon
+                AnimatedTreeView(stage: tree.stage, size: 80)
 
                 VStack(alignment: .leading, spacing: FTSpacing.xs) {
-                  Text("\(tree.stage.rawValue)")
+                  Text(treeStageName(tree.stage))
                         .font(FTFont.heading3())
                         .foregroundColor(FTColor.textPrimary)
 
@@ -137,7 +132,7 @@ struct TreeProgressCard: View {
 
                             RoundedRectangle(cornerRadius: 4)
                                 .fill(FTColor.primary)
-                                .frame(width: geometry.size.width * CGFloat(tree.stage.rawValue), height: 8)
+                                .frame(width: geometry.size.width * progressPercentage(tree.stage), height: 8)
                         }
                     }
                     .frame(height: 8)
@@ -160,14 +155,28 @@ struct TreeProgressCard: View {
         .shadow(color: .black.opacity(0.05), radius: 10, x: 0, y: 4)
     }
 
-    private var treeIcon: String {
-        switch tree.stage {
-        case .seed: return "leaf.circle"
-        case .sprout: return "leaf"
-        case .sapling: return "leaf.fill"
-        case .youngTree: return "tree"
-        case .matureTree: return "tree.fill"
-        case .flowering: return "tree.fill"
+    private func treeStageName(_ stage: TreeStage) -> String {
+        switch stage {
+        case .seed: return "씨앗"
+        case .sprout: return "새싹"
+        case .sapling: return "작은 나무"
+        case .youngTree: return "청년 나무"
+        case .matureTree: return "큰 나무"
+        case .flowering: return "꽃 피는 나무"
+        case .bound: return "통통 튀는 씨앗"
+        }
+    }
+    
+    private func progressPercentage(_ stage: TreeStage) -> CGFloat {
+        // 각 단계의 진행률을 0.0 ~ 1.0 사이로 반환
+        switch stage {
+        case .seed: return 0.0
+        case .sprout: return 0.2
+        case .sapling: return 0.4
+        case .youngTree: return 0.6
+        case .matureTree: return 0.8
+        case .flowering: return 1.0
+        case .bound: return 0.1
         }
     }
 }

@@ -24,16 +24,18 @@ struct HomeFeature {
         case refreshData
     }
   
-    func reduce(into state: inout State, action: Action) -> Effect<Action> {
-        switch action {
-        case .questionTapped:
-            // TODO: Navigate to question detail
-            return .none
-            
-        case .refreshData:
-            // TODO: Refresh home data
-            return .none
-        }
+  var body: some Reducer<State, Action> {
+    Reduce { state, action in
+      switch action {
+      case .questionTapped:
+          // TODO: Navigate to question detail
+          return .none
+          
+      case .refreshData:
+          // TODO: Refresh home data
+          return .none
+      }
     }
+  }
 }
 

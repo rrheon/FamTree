@@ -39,5 +39,6 @@ enum TreeStage: Int, Sendable {
     case youngTree = 3   // 청년 나무 (31-60일)
     case matureTree = 4  // 성목 (61-100일)
     case flowering = 5   // 꽃 피는 나무 (100일+)
+    case bound = 6
 }
 
