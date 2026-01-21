@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		EE964C952EEAA86D00AD2760 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = EE964C942EEAA86D00AD2760 /* ComposableArchitecture */; };
+		EEF770AC2F0508AA0049EBB9 /* Domain in Frameworks */ = {isa = PBXBuildFile; productRef = EEF770AB2F0508AA0049EBB9 /* Domain */; };
+		EEF770AF2F0508AA0049EBB9 /* FTData in Frameworks */ = {isa = PBXBuildFile; productRef = EEF770AE2F0508AA0049EBB9 /* FTData */; };
+		EEF772042F07D3780049EBB9 /* FTFeatures in Frameworks */ = {isa = PBXBuildFile; productRef = EEF772032F07D3780049EBB9 /* FTFeatures */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,7 +30,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EEF770AC2F0508AA0049EBB9 /* Domain in Frameworks */,
+				EEF770AF2F0508AA0049EBB9 /* FTData in Frameworks */,
 				EE964C952EEAA86D00AD2760 /* ComposableArchitecture in Frameworks */,
+				EEF772042F07D3780049EBB9 /* FTFeatures in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -71,6 +77,9 @@
 			name = FamTree;
 			packageProductDependencies = (
 				EE964C942EEAA86D00AD2760 /* ComposableArchitecture */,
+				EEF770AB2F0508AA0049EBB9 /* Domain */,
+				EEF770AE2F0508AA0049EBB9 /* FTData */,
+				EEF772032F07D3780049EBB9 /* FTFeatures */,
 			);
 			productName = FamTree;
 			productReference = EE964B902EE97EF000AD2760 /* FamTree.app */;
@@ -102,6 +111,9 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				EE964C932EEAA86D00AD2760 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
+				EEF770AA2F0508AA0049EBB9 /* XCLocalSwiftPackageReference "Domain" */,
+				EEF770AD2F0508AA0049EBB9 /* XCLocalSwiftPackageReference "FTData" */,
+				EEF772022F07D3780049EBB9 /* XCLocalSwiftPackageReference "FTFeatures" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = EE964B912EE97EF000AD2760 /* Products */;
@@ -270,7 +282,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -307,7 +319,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -352,6 +364,21 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCLocalSwiftPackageReference section */
+		EEF770AA2F0508AA0049EBB9 /* XCLocalSwiftPackageReference "Domain" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = Domain;
+		};
+		EEF770AD2F0508AA0049EBB9 /* XCLocalSwiftPackageReference "FTData" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = FTData;
+		};
+		EEF772022F07D3780049EBB9 /* XCLocalSwiftPackageReference "FTFeatures" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = FTFeatures;
+		};
+/* End XCLocalSwiftPackageReference section */
+
 /* Begin XCRemoteSwiftPackageReference section */
 		EE964C932EEAA86D00AD2760 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
 			isa = XCRemoteSwiftPackageReference;
@@ -368,6 +395,18 @@
 			isa = XCSwiftPackageProductDependency;
 			package = EE964C932EEAA86D00AD2760 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
 			productName = ComposableArchitecture;
+		};
+		EEF770AB2F0508AA0049EBB9 /* Domain */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Domain;
+		};
+		EEF770AE2F0508AA0049EBB9 /* FTData */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = FTData;
+		};
+		EEF772032F07D3780049EBB9 /* FTFeatures */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = FTFeatures;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
